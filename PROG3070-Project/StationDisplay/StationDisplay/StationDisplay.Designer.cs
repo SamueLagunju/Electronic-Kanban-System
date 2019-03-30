@@ -28,24 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.stockChrt = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.StationLst = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.RunBtn = new System.Windows.Forms.Button();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.stockChrt)).BeginInit();
             this.SuspendLayout();
             // 
             // stockChrt
             // 
-            chartArea3.Name = "ChartArea1";
-            this.stockChrt.ChartAreas.Add(chartArea3);
+            chartArea1.Name = "ChartArea1";
+            this.stockChrt.ChartAreas.Add(chartArea1);
             this.stockChrt.Location = new System.Drawing.Point(13, 43);
             this.stockChrt.Name = "stockChrt";
-            series3.ChartArea = "ChartArea1";
-            series3.Name = "Stock";
-            this.stockChrt.Series.Add(series3);
+            series1.ChartArea = "ChartArea1";
+            series1.Name = "Stock";
+            this.stockChrt.Series.Add(series1);
             this.stockChrt.Size = new System.Drawing.Size(775, 395);
             this.stockChrt.TabIndex = 0;
             this.stockChrt.Text = "Part Stock";
@@ -78,6 +79,10 @@
             this.RunBtn.UseVisualStyleBackColor = true;
             this.RunBtn.Click += new System.EventHandler(this.RunBtn_Click);
             // 
+            // backgroundWorker1
+            // 
+            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
+            // 
             // StationDisplay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -101,6 +106,7 @@
         private System.Windows.Forms.Label label1;
         public System.Windows.Forms.DataVisualization.Charting.Chart stockChrt;
         private System.Windows.Forms.Button RunBtn;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }
 

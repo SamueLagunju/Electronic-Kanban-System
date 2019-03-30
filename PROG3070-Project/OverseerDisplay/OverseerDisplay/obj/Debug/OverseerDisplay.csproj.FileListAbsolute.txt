@@ -1,0 +1,10 @@
+C:\Users\gstew\OneDrive\Documents\Conestoga College Work\Level 4\Advanced SQL\PROG3070-Project\OverseerDisplay\OverseerDisplay\bin\Debug\OverseerDisplay.exe.config
+C:\Users\gstew\OneDrive\Documents\Conestoga College Work\Level 4\Advanced SQL\PROG3070-Project\OverseerDisplay\OverseerDisplay\bin\Debug\OverseerDisplay.exe
+C:\Users\gstew\OneDrive\Documents\Conestoga College Work\Level 4\Advanced SQL\PROG3070-Project\OverseerDisplay\OverseerDisplay\bin\Debug\OverseerDisplay.pdb
+C:\Users\gstew\OneDrive\Documents\Conestoga College Work\Level 4\Advanced SQL\PROG3070-Project\OverseerDisplay\OverseerDisplay\obj\Debug\OverseerDisplay.csprojAssemblyReference.cache
+C:\Users\gstew\OneDrive\Documents\Conestoga College Work\Level 4\Advanced SQL\PROG3070-Project\OverseerDisplay\OverseerDisplay\obj\Debug\OverseerDisplay.OverseerDisplay.resources
+C:\Users\gstew\OneDrive\Documents\Conestoga College Work\Level 4\Advanced SQL\PROG3070-Project\OverseerDisplay\OverseerDisplay\obj\Debug\OverseerDisplay.Properties.Resources.resources
+C:\Users\gstew\OneDrive\Documents\Conestoga College Work\Level 4\Advanced SQL\PROG3070-Project\OverseerDisplay\OverseerDisplay\obj\Debug\OverseerDisplay.csproj.GenerateResource.cache
+C:\Users\gstew\OneDrive\Documents\Conestoga College Work\Level 4\Advanced SQL\PROG3070-Project\OverseerDisplay\OverseerDisplay\obj\Debug\OverseerDisplay.csproj.CoreCompileInputs.cache
+C:\Users\gstew\OneDrive\Documents\Conestoga College Work\Level 4\Advanced SQL\PROG3070-Project\OverseerDisplay\OverseerDisplay\obj\Debug\OverseerDisplay.exe
+C:\Users\gstew\OneDrive\Documents\Conestoga College Work\Level 4\Advanced SQL\PROG3070-Project\OverseerDisplay\OverseerDisplay\obj\Debug\OverseerDisplay.pdb

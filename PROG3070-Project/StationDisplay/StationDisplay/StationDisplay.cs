@@ -7,6 +7,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Threading;
@@ -36,6 +37,7 @@ namespace StationDisplay
         public StationDisplay()
         {
             InitializeComponent();
+            backgroundWorker1.WorkerSupportsCancellation = true;
         }
 
         // Method		: StationDisplay_Load
@@ -113,18 +115,72 @@ namespace StationDisplay
         {
             int x = 0;
             // Recursive call to method, allows access to form element in parent thread
-            if(stockChrt.InvokeRequired)
+            //if(stockChrt.InvokeRequired)
+            //{
+            //    stockChrt.Invoke(new Action(() =>
+            //    {
+            //        ChartLoop();
+            //    }
+            //    ));
+            //}
+            //else
+            //{
+            // Run a loop to update chart data
+            for(; ; )
             {
-                stockChrt.Invoke(new Action(() =>
+                // Clear series data
+                stockChrt.Series["Stock"].Points.Clear();
+
+                // Change chart title
+                stockChrt.Titles.Add("Station Stock");
+
+                // Use data inside of list to create chart
+                foreach(object[] record in StockData)
                 {
-                    ChartLoop();
+                    stockChrt.ChartAreas[0].AxisX.MajorGrid.LineWidth = 0;
+                    stockChrt.ChartAreas[0].AxisY.MajorGrid.LineWidth = 0;
+                    stockChrt.ChartAreas[0].AxisX.LabelStyle.Angle = -45;
+                    stockChrt.Series["Stock"].Points.AddXY(record[0], record[1]);
+                    if((int)record[1] < 5)
+                    {
+                        stockChrt.Series["Stock"].Points[x].Color = Color.Red;
+                    }
+                    x++;
                 }
-                ));
+            }
+            //}
+        }
+
+        private void RunBtn_Click(object sender, EventArgs e)
+        {
+            // Create thread to begin drawing the stock levels
+            Thread t = new Thread(ChartLoop);
+            if(loop)
+            {
+                RunBtn.Text = "START";
+                // Cancel the asynchronous operation.
+                backgroundWorker1.CancelAsync();
             }
             else
             {
-                // Run a loop to update chart data
-                for(; ; )
+                backgroundWorker1.RunWorkerAsync();
+                RunBtn.Text = "STOP";
+            }
+        }
+
+        private void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+            BackgroundWorker worker = sender as BackgroundWorker;
+            int x = 0;
+
+            for(; ; )
+            {
+                if(worker.CancellationPending == true)
+                {
+                    e.Cancel = true;
+                    break;
+                }
+                else
                 {
                     // Clear series data
                     stockChrt.Series["Stock"].Points.Clear();
@@ -146,22 +202,6 @@ namespace StationDisplay
                         x++;
                     }
                 }
-            }
-        }
-
-        private void RunBtn_Click(object sender, EventArgs e)
-        {
-            // Create thread to begin drawing the stock levels
-            Thread t = new Thread(ChartLoop);
-            if(loop)
-            {
-                RunBtn.Text = "START";
-                t.Abort();
-            }
-            else
-            {
-                t.Start();
-                RunBtn.Text = "STOP";
             }
         }
     }

@@ -34,12 +34,15 @@
             this.StationLst = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.RunBtn = new System.Windows.Forms.Button();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.StockUpdater = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.stockChrt)).BeginInit();
             this.SuspendLayout();
             // 
             // stockChrt
             // 
+            this.stockChrt.BackColor = System.Drawing.Color.Silver;
+            this.stockChrt.BorderlineColor = System.Drawing.Color.Black;
+            this.stockChrt.BorderlineWidth = 10;
             chartArea1.Name = "ChartArea1";
             this.stockChrt.ChartAreas.Add(chartArea1);
             this.stockChrt.Location = new System.Drawing.Point(13, 43);
@@ -73,15 +76,15 @@
             // 
             this.RunBtn.Location = new System.Drawing.Point(231, 9);
             this.RunBtn.Name = "RunBtn";
-            this.RunBtn.Size = new System.Drawing.Size(81, 28);
+            this.RunBtn.Size = new System.Drawing.Size(81, 33);
             this.RunBtn.TabIndex = 3;
             this.RunBtn.Text = "START";
             this.RunBtn.UseVisualStyleBackColor = true;
             this.RunBtn.Click += new System.EventHandler(this.RunBtn_Click);
             // 
-            // backgroundWorker1
+            // StockUpdater
             // 
-            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
+            this.StockUpdater.DoWork += new System.ComponentModel.DoWorkEventHandler(this.StockUpdater_DoWork);
             // 
             // StationDisplay
             // 
@@ -106,7 +109,7 @@
         private System.Windows.Forms.Label label1;
         public System.Windows.Forms.DataVisualization.Charting.Chart stockChrt;
         private System.Windows.Forms.Button RunBtn;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.ComponentModel.BackgroundWorker StockUpdater;
     }
 }
 

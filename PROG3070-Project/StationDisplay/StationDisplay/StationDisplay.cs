@@ -10,7 +10,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Threading;
 using System.Windows.Forms;
 
 namespace StationDisplay
@@ -25,8 +24,8 @@ namespace StationDisplay
         // Private class data members
         private int station;
 
-        private List<object> Stations = new List<object>();
-        private List<object> StockData = new List<object>();
+        private List<object> Stations;
+        private List<object> StockData;
 
         private bool loop = false;
 
@@ -36,8 +35,16 @@ namespace StationDisplay
         // Returns		: None
         public StationDisplay()
         {
+            // Initialize assets
             InitializeComponent();
-            backgroundWorker1.WorkerSupportsCancellation = true;
+            Stations = new List<object>();
+            StockData = new List<object>();
+            StockUpdater.WorkerSupportsCancellation = true;
+
+            // Change form properties
+            stockChrt.Titles.Add("Station Stock");
+            stockChrt.ChartAreas["ChartArea1"].AxisX.Title = "Part";
+            stockChrt.ChartAreas["ChartArea1"].AxisY.Title = "Current Stock";
         }
 
         // Method		: StationDisplay_Load
@@ -47,7 +54,7 @@ namespace StationDisplay
         private void StationDisplay_Load(object sender, System.EventArgs e)
         {
             // When the form is loaded, populate the list of available stations
-            string query = "SELECT DISTINCT Station, StationBinID FROM Station;";
+            string query = "SELECT DISTINCT Station FROM Station;";
             Stations = GetData(query);
             foreach(object[] record in Stations)
             {
@@ -98,102 +105,67 @@ namespace StationDisplay
         // Returns		: None
         private void StationLst_SelectedIndexChanged(object sender, System.EventArgs e)
         {
+            // Set selected station equal to selected item in list
             station = StationLst.SelectedIndex + 1;
-
-            // Create query using selected station
-            string query = "SELECT DISTINCT P.PartName, S.Stock FROM Stock S ";
-            query += "JOIN Part P ON P.PartID = S.Part ";
-            query += "WHERE S.Station = " + station;
-            StockData = GetData(query);
         }
 
-        // Method		: ChartLoop
-        // Description	: Thread that repeatedly draws the chart using updating data in class
-        // Parameters	: None
+        // Method		: RunBtn_Click
+        // Description	: Starts/Stops thread and updates button for control
+        // Parameters	: Generic sender information
         // Returns		: None
-        private void ChartLoop()
-        {
-            int x = 0;
-            // Recursive call to method, allows access to form element in parent thread
-            //if(stockChrt.InvokeRequired)
-            //{
-            //    stockChrt.Invoke(new Action(() =>
-            //    {
-            //        ChartLoop();
-            //    }
-            //    ));
-            //}
-            //else
-            //{
-            // Run a loop to update chart data
-            for(; ; )
-            {
-                // Clear series data
-                stockChrt.Series["Stock"].Points.Clear();
-
-                // Change chart title
-                stockChrt.Titles.Add("Station Stock");
-
-                // Use data inside of list to create chart
-                foreach(object[] record in StockData)
-                {
-                    stockChrt.ChartAreas[0].AxisX.MajorGrid.LineWidth = 0;
-                    stockChrt.ChartAreas[0].AxisY.MajorGrid.LineWidth = 0;
-                    stockChrt.ChartAreas[0].AxisX.LabelStyle.Angle = -45;
-                    stockChrt.Series["Stock"].Points.AddXY(record[0], record[1]);
-                    if((int)record[1] < 5)
-                    {
-                        stockChrt.Series["Stock"].Points[x].Color = Color.Red;
-                    }
-                    x++;
-                }
-            }
-            //}
-        }
-
         private void RunBtn_Click(object sender, EventArgs e)
         {
-            // Create thread to begin drawing the stock levels
-            Thread t = new Thread(ChartLoop);
+            // If the application is currently running an update loop
             if(loop)
             {
+                // Shut it off and allow option to start
                 RunBtn.Text = "START";
-                // Cancel the asynchronous operation.
-                backgroundWorker1.CancelAsync();
+                StockUpdater.CancelAsync();
+                loop = false;
             }
             else
             {
-                backgroundWorker1.RunWorkerAsync();
+                // Turn it on and allow option to finish
                 RunBtn.Text = "STOP";
+                StockUpdater.RunWorkerAsync();
+                loop = true;
             }
         }
 
-        private void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        // Method		: StockUpdater_DoWork
+        // Description	: Continually updates parent chart using revised stockdata
+        // Parameters	: Sender information from parent thread
+        // Returns		: None
+        private void StockUpdater_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
-            BackgroundWorker worker = sender as BackgroundWorker;
-            int x = 0;
-
+            // Run endlessly, loop will be ended when thread is closed
             for(; ; )
             {
-                if(worker.CancellationPending == true)
+                // If the worker has been told to close, exit the thread
+                if(StockUpdater.CancellationPending == true)
                 {
                     e.Cancel = true;
                     break;
                 }
-                else
+                BackgroundWorker worker = sender as BackgroundWorker;
+
+                // Update the query, including the current station number
+                string query = "SELECT DISTINCT P.PartName, S.Stock FROM Stock S ";
+                query += "JOIN Part P ON P.PartID = S.Part ";
+                query += "WHERE S.Station = " + station;
+                StockData = GetData(query); // Update StockData list with current data for selected station
+
+                int x = 0; // Incrementing integer used to change color
+
+                // Invoke to change parent thread form properties
+                stockChrt.Invoke(new Action(() =>
                 {
                     // Clear series data
                     stockChrt.Series["Stock"].Points.Clear();
 
-                    // Change chart title
-                    stockChrt.Titles.Add("Station Stock");
-
                     // Use data inside of list to create chart
                     foreach(object[] record in StockData)
                     {
-                        stockChrt.ChartAreas[0].AxisX.MajorGrid.LineWidth = 0;
-                        stockChrt.ChartAreas[0].AxisY.MajorGrid.LineWidth = 0;
-                        stockChrt.ChartAreas[0].AxisX.LabelStyle.Angle = -45;
                         stockChrt.Series["Stock"].Points.AddXY(record[0], record[1]);
                         if((int)record[1] < 5)
                         {
@@ -202,6 +174,7 @@ namespace StationDisplay
                         x++;
                     }
                 }
+                ));
             }
         }
     }

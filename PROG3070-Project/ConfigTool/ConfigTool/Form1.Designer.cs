@@ -149,7 +149,7 @@ namespace ConfigTool
             this.Controls.Add(this.RefreshBtn);
             this.Controls.Add(this.dataGridDisplay);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Configuration Tool";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridDisplay)).EndInit();
             this.ResumeLayout(false);

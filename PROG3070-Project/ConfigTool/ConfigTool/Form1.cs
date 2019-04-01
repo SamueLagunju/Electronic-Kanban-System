@@ -141,20 +141,24 @@ namespace ConfigTool
                     SqlConnection connection = new SqlConnection(connString);
                     connection.Open();  //Opening the connection
                     //SQL command used to update the relevant information with the user's input
-                    SqlCommand sqlCommand = new SqlCommand("Delete from [Configuration] where Item = @ExistingItem", connection);
+                    SqlCommand sqlCommand = new SqlCommand("Update [Configuration] SET Value = @UpdatingValue Where Item = @ExistingItem", connection);
 
                     //sqlCommand = new SqlCommand("Update [Configuration] set [Value]=@newValue WHERE Item = @ExitingItem", connection);
+                    sqlCommand.Parameters.AddWithValue("@UpdatingValue", valueTxtBox.Text.ToString());   //Adding the value from the value text box
                     sqlCommand.Parameters.AddWithValue("@ExistingItem", categoryTxtBox.Text.ToString());   //Adding the value from the value text box
+
+                    if (sqlCommand.ExecuteNonQuery() > 0) { MessageBox.Show("Update Successful!", "Alert", MessageBoxButtons.OK); }
+
                     //sqlCommand.Parameters.AddWithValue("@newValue", valueTxtBox.Text.ToString());   //Adding the value from the value text box
                     //If the ExecuteNonQuery returned 1, then go ahead and insert the new data
-                    if (sqlCommand.ExecuteNonQuery() > 0) {
-                        sqlCommand = new SqlCommand("Insert into [Configuration] (Item, Value)" +
-                                                            " Values (@newItem, @newValue)", connection);
-                        sqlCommand.Parameters.AddWithValue("@newItem", categoryTxtBox.Text.ToString()); //Adding the value from the category text box
-                        sqlCommand.Parameters.AddWithValue("@newValue", valueTxtBox.Text.ToString());   //Adding the value from the value text box
+                    //if (sqlCommand.ExecuteNonQuery() > 0) {
+                    //    sqlCommand = new SqlCommand("Insert into [Configuration] (Item, Value)" +
+                    //                                        " Values (@newItem, @newValue)", connection);
+                    //    sqlCommand.Parameters.AddWithValue("@newItem", categoryTxtBox.Text.ToString()); //Adding the value from the category text box
+                    //    sqlCommand.Parameters.AddWithValue("@newValue", valueTxtBox.Text.ToString());   //Adding the value from the value text box
 
-                        if (sqlCommand.ExecuteNonQuery() > 0) { MessageBox.Show("Update Successful!", "Alert", MessageBoxButtons.OK); }
-                    }
+                    //    if (sqlCommand.ExecuteNonQuery() > 0) { MessageBox.Show("Update Successful!", "Alert", MessageBoxButtons.OK); }
+                    //}
 
                     connection.Close(); //Closing the connection
                 }

@@ -1,0 +1,7 @@
+C:\Users\slagu\Desktop\School\Second Year Semester 2\Advanced SQL\Project\PROG3070-Project\Workstation\WorkstationSimulation\WorkstationSimulation\bin\Debug\WorkstationSimulation.exe.config
+C:\Users\slagu\Desktop\School\Second Year Semester 2\Advanced SQL\Project\PROG3070-Project\Workstation\WorkstationSimulation\WorkstationSimulation\bin\Debug\WorkstationSimulation.exe
+C:\Users\slagu\Desktop\School\Second Year Semester 2\Advanced SQL\Project\PROG3070-Project\Workstation\WorkstationSimulation\WorkstationSimulation\bin\Debug\WorkstationSimulation.pdb
+C:\Users\slagu\Desktop\School\Second Year Semester 2\Advanced SQL\Project\PROG3070-Project\Workstation\WorkstationSimulation\WorkstationSimulation\obj\Debug\WorkstationSimulation.csprojAssemblyReference.cache
+C:\Users\slagu\Desktop\School\Second Year Semester 2\Advanced SQL\Project\PROG3070-Project\Workstation\WorkstationSimulation\WorkstationSimulation\obj\Debug\WorkstationSimulation.csproj.CoreCompileInputs.cache
+C:\Users\slagu\Desktop\School\Second Year Semester 2\Advanced SQL\Project\PROG3070-Project\Workstation\WorkstationSimulation\WorkstationSimulation\obj\Debug\WorkstationSimulation.exe
+C:\Users\slagu\Desktop\School\Second Year Semester 2\Advanced SQL\Project\PROG3070-Project\Workstation\WorkstationSimulation\WorkstationSimulation\obj\Debug\WorkstationSimulation.pdb

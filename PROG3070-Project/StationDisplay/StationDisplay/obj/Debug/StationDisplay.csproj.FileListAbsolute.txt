@@ -8,3 +8,13 @@ C:\Users\gstew\OneDrive\Documents\Conestoga College Work\Level 4\Advanced SQL\PR
 C:\Users\gstew\OneDrive\Documents\Conestoga College Work\Level 4\Advanced SQL\PROG3070-Project\StationDisplay\StationDisplay\bin\Debug\StationDisplay.exe.config
 C:\Users\gstew\OneDrive\Documents\Conestoga College Work\Level 4\Advanced SQL\PROG3070-Project\StationDisplay\StationDisplay\bin\Debug\StationDisplay.exe
 C:\Users\gstew\OneDrive\Documents\Conestoga College Work\Level 4\Advanced SQL\PROG3070-Project\StationDisplay\StationDisplay\obj\Debug\StationDisplay.exe
+C:\Users\gstew\OneDrive\Documents\Conestoga College Work\Level 4\Advanced SQL\PROG3070-Project\PROG3070-Project\StationDisplay\StationDisplay\bin\Debug\StationDisplay.exe.config
+C:\Users\gstew\OneDrive\Documents\Conestoga College Work\Level 4\Advanced SQL\PROG3070-Project\PROG3070-Project\StationDisplay\StationDisplay\bin\Debug\StationDisplay.exe
+C:\Users\gstew\OneDrive\Documents\Conestoga College Work\Level 4\Advanced SQL\PROG3070-Project\PROG3070-Project\StationDisplay\StationDisplay\bin\Debug\StationDisplay.pdb
+C:\Users\gstew\OneDrive\Documents\Conestoga College Work\Level 4\Advanced SQL\PROG3070-Project\PROG3070-Project\StationDisplay\StationDisplay\obj\Debug\StationDisplay.csprojAssemblyReference.cache
+C:\Users\gstew\OneDrive\Documents\Conestoga College Work\Level 4\Advanced SQL\PROG3070-Project\PROG3070-Project\StationDisplay\StationDisplay\obj\Debug\StationDisplay.Properties.Resources.resources
+C:\Users\gstew\OneDrive\Documents\Conestoga College Work\Level 4\Advanced SQL\PROG3070-Project\PROG3070-Project\StationDisplay\StationDisplay\obj\Debug\StationDisplay.StationDisplay.resources
+C:\Users\gstew\OneDrive\Documents\Conestoga College Work\Level 4\Advanced SQL\PROG3070-Project\PROG3070-Project\StationDisplay\StationDisplay\obj\Debug\StationDisplay.csproj.GenerateResource.cache
+C:\Users\gstew\OneDrive\Documents\Conestoga College Work\Level 4\Advanced SQL\PROG3070-Project\PROG3070-Project\StationDisplay\StationDisplay\obj\Debug\StationDisplay.csproj.CoreCompileInputs.cache
+C:\Users\gstew\OneDrive\Documents\Conestoga College Work\Level 4\Advanced SQL\PROG3070-Project\PROG3070-Project\StationDisplay\StationDisplay\obj\Debug\StationDisplay.exe
+C:\Users\gstew\OneDrive\Documents\Conestoga College Work\Level 4\Advanced SQL\PROG3070-Project\PROG3070-Project\StationDisplay\StationDisplay\obj\Debug\StationDisplay.pdb

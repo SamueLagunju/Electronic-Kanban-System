@@ -2,4 +2,6 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
+/PROG3070-Project/OverseerDisplay/.vs/OverseerDisplay/v15/Server/sqlite3
+/PROG3070-Project/OverseerDisplay/.vs/OverseerDisplay/v15
 /PROG3070-Project/StationDisplay/.vs/StationDisplay/v15/Server/sqlite3

@@ -59,7 +59,7 @@ namespace WorkstationSimulation
                 try
                 {
                     tempConnection.Open();
-                    timeScaleBuffer = (int)sqlCommand.ExecuteScalar();  
+                    timeScaleBuffer = Convert.ToInt32(sqlCommand.ExecuteScalar());  
                 }
                 catch(Exception ex)
                 {

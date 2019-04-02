@@ -9,7 +9,7 @@ using System.Configuration;
 
 namespace WorkstationSimulation
 {
-    class Program
+    class WorkstationOperator
     {
         static string connString = "Server= localhost; Initial Catalog=Kanban System Data; Integrated Security=SSPI;";
         static void Main(string[] args)
@@ -73,6 +73,7 @@ namespace WorkstationSimulation
                 {
                     try
                     {
+                        Console.WriteLine("Workstation currently in use");
                         Console.Write("Please input a new StationID: ");
                         newStation.SetWorkStationID(Convert.ToInt32(Console.ReadLine()));
                     }
@@ -96,7 +97,7 @@ namespace WorkstationSimulation
                     Console.WriteLine("Press 0 to quit the program ");
                     Console.WriteLine("Press 1 to start the simulation");
                     Console.WriteLine("Press 2 to stop the simulation");
-
+                    Console.Write("Select An Option: ");
                     int userInput = Convert.ToInt32(Console.ReadLine());
 
                     switch(userInput)
@@ -160,7 +161,7 @@ namespace WorkstationSimulation
                 {
                     sqlConnection.Open();
 
-                    SqlCommand sqlCommand = new SqlCommand("InstantiateStation", sqlConnection);
+                    SqlCommand sqlCommand = new SqlCommand("instantiate_station", sqlConnection);
                     sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
                     sqlCommand.Parameters.AddWithValue("@StationNumber", workStation.GetWorkStationID());
                     sqlCommand.Parameters.AddWithValue("@Experience", workStation.GetWorkStationExperience());
@@ -168,11 +169,9 @@ namespace WorkstationSimulation
                     sqlCommand.Parameters.AddWithValue("@Speed", workStation.GetWorkStationSpeed());
 
 
-                    var returnParameter = sqlCommand.Parameters.Add("@result", SqlDbType.Int);
-                    returnParameter.Direction = ParameterDirection.ReturnValue;
-
+                    sqlCommand.Parameters.AddWithValue("@Result", SqlDbType.Int).Direction = ParameterDirection.Output;
                     sqlCommand.ExecuteNonQuery();
-                    int queryResult = (int) returnParameter.Value;
+                    int queryResult = Convert.ToInt32(sqlCommand.Parameters["@Result"].Value);
                     if (!(queryResult > 0)) { status = false; }
                 }
 

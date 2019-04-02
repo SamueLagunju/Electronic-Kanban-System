@@ -13,6 +13,8 @@ namespace WorkstationSimulation
         private string experience;
         private float defectRate;
         private float speed;
+        private bool activeStatus;
+        public string isActive;
 
         public WorkStation(int stationIDBuffer, string experienceBuffer, int experienceLevel)
         {
@@ -83,11 +85,41 @@ namespace WorkstationSimulation
         public string GetWorkStationExperience() { return this.experience; }
         public float GetWorkStationDefectRate() { return this.defectRate; }
         public float GetWorkStationSpeed() { return this.speed; }
+        public bool GetActiveStatus() { return this.activeStatus; }
 
         //Setters
         public void SetWorkStationID(int newStationID) { this.workStationID = newStationID; }
         public void SetWorkStationExperience(string newStationExperience) { this.experience = newStationExperience; }
         public void SetWorkStationDefectRate(float newDefectRate) { this.defectRate = newDefectRate; }
         public void SetWorkStationSpeed(float newStationSpeed) { this.speed = newStationSpeed; }
+        public void SetWorkStationStatus(bool newStatus)
+        {
+            if (newStatus) { this.isActive = "Yes"; }
+            else { this.isActive = "No"; }
+        }
+
+
+        public void SimulationOperation()
+        {
+            bool runningStatus = true;
+            while(runningStatus)
+            {
+                Console.WriteLine("Hello");
+                this.activeStatus = true;
+                runningStatus = false;
+            }
+
+        }
+
+        public void DisplayDetails()
+        {
+            Console.Clear();
+            Console.WriteLine("Workstation #" + this.GetWorkStationID());
+            Console.WriteLine("Experience: " + this.GetWorkStationExperience());
+            Console.WriteLine("Defect Rate: " + this.GetWorkStationDefectRate());
+            Console.WriteLine("Speed: " + this.GetWorkStationSpeed());
+            Console.WriteLine("Active: " + this.isActive.ToString());
+
+        }
     }
 }

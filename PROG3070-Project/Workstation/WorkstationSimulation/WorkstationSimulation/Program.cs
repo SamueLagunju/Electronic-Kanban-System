@@ -62,36 +62,64 @@ namespace WorkstationSimulation
                     }
 
                 }
-                catch (Exception ExceptionError) { Console.WriteLine(ExceptionError.Message); ; }
+                catch (Exception ExceptionError) { Console.WriteLine(ExceptionError.Message); }
             }
 
             WorkStation newStation = new WorkStation(workStationIDBuffer, experienceBuffer, experienceLevel); runningStatus = true;
 
-            while(runningStatus)
+            while (runningStatus)
             {
-                if(!RunInsertStoredProcedure(newStation))
+                if (!RunInsertStoredProcedure(newStation))
                 {
                     try
                     {
                         Console.Write("Please input a new StationID: ");
                         newStation.SetWorkStationID(Convert.ToInt32(Console.ReadLine()));
                     }
-                    catch(Exception exceptError)
+                    catch (Exception exceptError)
                     {
                         Console.WriteLine(exceptError.Message);
                     }
                 }
 
-                else { runningStatus = false; }
+                else { runningStatus = false; newStation.SetWorkStationStatus(true); }
             }
 
             runningStatus = true;
 
+            newStation.DisplayDetails();
+
             while(runningStatus)
             {
-                Console.Write("Press 1 to start the simulation: ");
+                try
+                {
+                    Console.WriteLine("Press 0 to quit the program ");
+                    Console.WriteLine("Press 1 to start the simulation");
+                    Console.WriteLine("Press 2 to stop the simulation");
+
+                    int userInput = Convert.ToInt32(Console.ReadLine());
+
+                    switch(userInput)
+                    {
+                        case 0:
+                            runningStatus = false;
+                            break;
+                        case 1:
+                            newStation.SimulationOperation();
+                            break;
+                        case 2:
+                            newStation.SetWorkStationStatus(false);
+                            break;
+                        default:
+                            Console.WriteLine("Invalid Input");
+                            break;
+
+                    }
+
+                }
+                catch (Exception ExceptionError) { Console.WriteLine(ExceptionError.Message); ; }
             }
-            
+
 
 
         }
@@ -128,22 +156,28 @@ namespace WorkstationSimulation
 
             using (SqlConnection sqlConnection = new SqlConnection(connString))
             {
-                sqlConnection.Open();
+                try
+                {
+                    sqlConnection.Open();
 
-                SqlCommand sqlCommand = new SqlCommand("InstantiateStation", sqlConnection);
-                sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
-                sqlCommand.Parameters.AddWithValue("@StationNumber", workStation.GetWorkStationID());
-                sqlCommand.Parameters.AddWithValue("@Experience", workStation.GetWorkStationExperience());
-                sqlCommand.Parameters.AddWithValue("@DefectRate", workStation.GetWorkStationDefectRate());
-                sqlCommand.Parameters.AddWithValue("@Speed", workStation.GetWorkStationSpeed());
+                    SqlCommand sqlCommand = new SqlCommand("InstantiateStation", sqlConnection);
+                    sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                    sqlCommand.Parameters.AddWithValue("@StationNumber", workStation.GetWorkStationID());
+                    sqlCommand.Parameters.AddWithValue("@Experience", workStation.GetWorkStationExperience());
+                    sqlCommand.Parameters.AddWithValue("@DefectRate", workStation.GetWorkStationDefectRate());
+                    sqlCommand.Parameters.AddWithValue("@Speed", workStation.GetWorkStationSpeed());
 
 
-                var returnParameter = sqlCommand.Parameters.Add("@result", SqlDbType.Int);
-                returnParameter.Direction = ParameterDirection.ReturnValue;
+                    var returnParameter = sqlCommand.Parameters.Add("@result", SqlDbType.Int);
+                    returnParameter.Direction = ParameterDirection.ReturnValue;
 
-                sqlCommand.ExecuteNonQuery();
-                int queryResult = (int) returnParameter.Value;
-                if (!(queryResult > 0)) { status = false; }
+                    sqlCommand.ExecuteNonQuery();
+                    int queryResult = (int) returnParameter.Value;
+                    if (!(queryResult > 0)) { status = false; }
+                }
+
+                catch (Exception ExceptionError) { Console.WriteLine(ExceptionError.Message); status = false; }
+
             }
 
             return status;

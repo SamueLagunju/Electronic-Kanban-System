@@ -1,0 +1,20 @@
+USE [Kanban System Data]
+GO
+
+/****** Object:  Table [dbo].[Station]    Script Date: 2019-04-02 9:50:56 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Station](
+	[Station] [int] NOT NULL,
+	[Active] [int] NOT NULL,
+ CONSTRAINT [PK_Station] PRIMARY KEY CLUSTERED 
+(
+	[Station] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+

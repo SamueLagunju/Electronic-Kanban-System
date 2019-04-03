@@ -1,0 +1,20 @@
+USE [Kanban System Data]
+GO
+
+/****** Object:  Table [dbo].[Part]    Script Date: 2019-04-02 9:50:38 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Part](
+	[PartID] [int] NOT NULL,
+	[PartName] [nchar](20) NOT NULL,
+ CONSTRAINT [PK_Part] PRIMARY KEY CLUSTERED 
+(
+	[PartID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+

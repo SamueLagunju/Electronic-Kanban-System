@@ -169,6 +169,13 @@ namespace ConfigTool
             catch (Exception exceptError) { MessageBox.Show("An error occured: " + exceptError.ToString(), "Error", MessageBoxButtons.OK); }
         }
 
+        /*
+        * Function		:   InsertBtn_Click(object sender, EventArgs e)
+        * Description	:   Inserts new content in the database with the user's input
+        * Parameters	:   object      sender
+        *                   EventArgs   e
+        * Returns		:   N/A
+        */
         private void InsertBtn_Click(object sender, EventArgs e)
         {
             try
@@ -196,6 +203,13 @@ namespace ConfigTool
 
         }
 
+        /*
+        * Function		:   DeleteBtn_Click(object sender, EventArgs e)
+        * Description	:   Deletes existing content in the database with the user's input
+        * Parameters	:   object      sender
+        *                   EventArgs   e
+        * Returns		:   N/A
+        */
         private void DeleteBtn_Click(object sender, EventArgs e)
         {
             try

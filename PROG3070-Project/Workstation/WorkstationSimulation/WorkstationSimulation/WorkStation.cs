@@ -51,7 +51,7 @@ namespace WorkstationSimulation
                 //If the experience level is New/Rookie
                 case 1:
                     this.experience = experienceBuffer;  //Setting the experience to New/Rookie
-                    this.defectRate = (float)0.85;       //Setting the defect rate to 85%
+                    this.defectRate = (float)0.0085;       //Setting the defect rate to 85%
                     //Speed is calculated by multiplying the time scale by a random number between 0.9-1.1 and 1.5
                     this.speed = (float)(GetTimeScale() * 1.5 * GenerateRandomNumber(0.9, 1.1));
                     this.SetWorkStationStatus(false);   //Setting the workstation status to false
@@ -59,7 +59,7 @@ namespace WorkstationSimulation
                 //If the experience level is Experienced/Normal
                 case 2:
                     this.experience = experienceBuffer; //Setting the experience level to Normal
-                    this.defectRate = (float)0.5;       //Setting the defect rate to 50%
+                    this.defectRate = (float)0.055;       //Setting the defect rate to 50%
                     //Speed is calcualted by multiplying the time scale by a random number between 0.9-1.1
                     this.speed = (float)(GetTimeScale() * GenerateRandomNumber(0.9, 1.1));
                     this.SetWorkStationStatus(false);   //Setting the workstation status to false
@@ -84,7 +84,7 @@ namespace WorkstationSimulation
         public int GetTimeScale()
         {
             //Connection string used to connect to the SQL server database
-            string connString = "Server= localhost; Initial Catalog=Kanban System Data; Integrated Security=SSPI;"; //Connection string to connect to the database
+            string connString = "Server= localhost; Initial Catalog=Kanban; Integrated Security=SSPI;"; //Connection string to connect to the database
             string commandString = "SELECT [Value] FROM [Configuration] WHERE [ITEM] = 'TimeScale'" ;   //Query string 
             int timeScaleBuffer;    //Value to be assigned from the database query
 
@@ -118,7 +118,7 @@ namespace WorkstationSimulation
         {
             bool tableResult = true;
 
-            string connString = "Server= localhost; Initial Catalog=Kanban System Data; Integrated Security=SSPI;"; //Connection string to connect to the database
+            string connString = "Server= localhost; Initial Catalog=Kanban; Integrated Security=SSPI;"; //Connection string to connect to the database
             string commandString = "SELECT [Value] FROM [Configuration] WHERE [ITEM] = 'Order'";   //Query string 
             int orderValueStatus;    //Value to be assigned from the database query
 
@@ -133,7 +133,7 @@ namespace WorkstationSimulation
                     orderValueStatus = Convert.ToInt32(sqlCommand.ExecuteScalar());
 
                     //If the result is less than 1, set the result to false since there are no orders yet
-                    if(!(orderValueStatus > 1)) { tableResult = false; }
+                    if(!(orderValueStatus > 0)) { tableResult = false; }
                 }
                 //If there are any errors, set the result to false for the program to retry again
                 catch (Exception ex)
@@ -186,38 +186,57 @@ namespace WorkstationSimulation
         */
         public void SimulationOperation()
         {
+            Console.Clear();
             bool runningStatus = true;  //Variable to keep the loop running
-            while(runningStatus)
+            string connString = "Server= localhost; Initial Catalog=Kanban; Integrated Security=SSPI;"; //Connection string to connect to the database
+            while (runningStatus)
             {
-                //If the workstation is not active, then begin simulation
-                if(!this.GetWorkStationStatus())
-                {    
-                    //If there are orders in the Order table, being operation
-                    if(GetOrderStatus())
+                //Simulator can only work if there are orders in the table
+                if (GetOrderStatus())
+                {
+                    try
+                    {
+
+                        using (SqlConnection tempConnection = new SqlConnection(connString))
+                        {
+                            tempConnection.Open();  //Opening connection to the database
+                                                    //SQL command used to update the relevant information with the user's input
+                            SqlCommand sqlCommand = new SqlCommand("Update [Station] SET Active = @Status Where Station = @StationNumber", tempConnection);
+                            sqlCommand.Parameters.AddWithValue("@Status", Convert.ToInt32(this.GetWorkStationStatus()));   //Adding the value from workstation class
+                            sqlCommand.Parameters.AddWithValue("@StationNumber", this.GetWorkStationID());   //Adding the value from workstation class
+                                                                                                             //If it cannot update the active status, stop the simulation 
+                            if (!(sqlCommand.ExecuteNonQuery() > 0)) { Console.WriteLine("Could not update database"); runningStatus = false; }
+                            else { this.SetWorkStationStatus(true); }
+                        }
+                    }
+                    //If any exception was thrown, set status to false
+                    catch (Exception exceptError) { Console.WriteLine(exceptError.Message); runningStatus = false; }
+
+                    //Ensuring the sqlConnection variable is disposed correctly
+                    using (SqlConnection sqlConnection = new SqlConnection(connString))
                     {
                         try
                         {
-                            string connString = "Server= localhost; Initial Catalog=Kanban System Data; Integrated Security=SSPI;"; //Connection string to connect to the database
-
-                            using (SqlConnection tempConnection = new SqlConnection(connString))
+                            sqlConnection.Open();   //Opening connection to the sql database
+                                                    //Creating a stored procedure command
+                            SqlCommand sqlCommand = new SqlCommand("workstation_update", sqlConnection)
                             {
-                                tempConnection.Open();  //Opening connection to the database
-                                //SQL command used to update the relevant information with the user's input
-                                SqlCommand sqlCommand = new SqlCommand("Update [Station] SET Active = @Status Where Station = @StationNumber", tempConnection);
-                                sqlCommand.Parameters.AddWithValue("@Status", Convert.ToInt32(this.GetWorkStationStatus()));   //Adding the value from workstation class
-                                sqlCommand.Parameters.AddWithValue("@StationNumber", this.GetWorkStationID());   //Adding the value from workstation class
-                                //If it cannot update the active status, stop the simulation 
-                                if (!(sqlCommand.ExecuteNonQuery() > 0)) { Console.WriteLine("Could not update database"); runningStatus = false; }
-                                else { this.SetWorkStationStatus(true); }
-                            }
+                                CommandType = System.Data.CommandType.StoredProcedure
+                            };
+                            //Adding the workstation details as the stored procedure parameters
+                            sqlCommand.Parameters.AddWithValue("@StationNumber", this.GetWorkStationID());
+                            sqlCommand.Parameters.AddWithValue("@DefectRate", this.GetWorkStationDefectRate());
+                            //Executing the stored procedure query
+                            int queryResult = sqlCommand.ExecuteNonQuery();
+                            if (queryResult < 0) { runningStatus = false; }
                         }
-                        //If any exception was thrown, set status to false
-                        catch (Exception exceptError) { Console.WriteLine(exceptError.Message); runningStatus = false; }                       
+                        //If there was an error, let the user know and report back to where the function was called from
+                        catch (Exception ExceptionError) { Console.WriteLine(ExceptionError.Message); runningStatus = false; }
 
                     }
-                    else { Console.WriteLine("Error: No current order placed.");runningStatus = false; }
+
                 }
-                else { Console.WriteLine("Workstation already active!"); runningStatus = false; }
+                else { Console.WriteLine("Error: No current order placed. Cannot Start."); runningStatus = false; }
             }
 
         }

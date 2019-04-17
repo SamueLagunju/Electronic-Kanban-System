@@ -18,3 +18,10 @@ C:\Users\gstew\OneDrive\Documents\Conestoga College Work\Level 4\Advanced SQL\PR
 C:\Users\gstew\OneDrive\Documents\Conestoga College Work\Level 4\Advanced SQL\PROG3070-Project\PROG3070-Project\OverseerDisplay\OverseerDisplay\obj\Debug\OverseerDisplay.csproj.CoreCompileInputs.cache
 C:\Users\gstew\OneDrive\Documents\Conestoga College Work\Level 4\Advanced SQL\PROG3070-Project\PROG3070-Project\OverseerDisplay\OverseerDisplay\obj\Debug\OverseerDisplay.exe
 C:\Users\gstew\OneDrive\Documents\Conestoga College Work\Level 4\Advanced SQL\PROG3070-Project\PROG3070-Project\OverseerDisplay\OverseerDisplay\obj\Debug\OverseerDisplay.pdb
+C:\Users\slagu\Desktop\School\Second Year Semester 2\Advanced SQL\Project\PROG3070-Project\OverseerDisplay\OverseerDisplay\obj\Debug\OverseerDisplay.csprojAssemblyReference.cache
+C:\Users\slagu\Desktop\School\Second Year Semester 2\Advanced SQL\Project\PROG3070-Project\OverseerDisplay\OverseerDisplay\obj\Debug\OverseerDisplay.OverseerDisplay.resources
+C:\Users\slagu\Desktop\School\Second Year Semester 2\Advanced SQL\Project\PROG3070-Project\OverseerDisplay\OverseerDisplay\obj\Debug\OverseerDisplay.Properties.Resources.resources
+C:\Users\slagu\Desktop\School\Second Year Semester 2\Advanced SQL\Project\PROG3070-Project\OverseerDisplay\OverseerDisplay\obj\Debug\OverseerDisplay.csproj.GenerateResource.cache
+C:\Users\slagu\Desktop\School\Second Year Semester 2\Advanced SQL\Project\PROG3070-Project\OverseerDisplay\OverseerDisplay\obj\Debug\OverseerDisplay.csproj.CoreCompileInputs.cache
+C:\Users\slagu\Desktop\School\Second Year Semester 2\Advanced SQL\Project\PROG3070-Project\OverseerDisplay\OverseerDisplay\obj\Debug\OverseerDisplay.exe
+C:\Users\slagu\Desktop\School\Second Year Semester 2\Advanced SQL\Project\PROG3070-Project\OverseerDisplay\OverseerDisplay\obj\Debug\OverseerDisplay.pdb

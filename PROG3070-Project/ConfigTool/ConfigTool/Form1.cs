@@ -132,16 +132,16 @@ namespace ConfigTool
         */
         private void UpdateBtn_Click(object sender, EventArgs e)
         {
-            //try
-            //{
+            try
+            {
                 //If the text boxes aren't empty, then proceed
                 if ((categoryTxtBox.Text != "") && (valueTxtBox.Text != ""))
                 {
                     //Creating a connection to the database
-                    SqlConnection connection = new SqlConnection("Server= localhost; Initial Catalog=Kanban System Data; Integrated Security=SSPI;");
+                    SqlConnection connection = new SqlConnection(connString);
                     connection.Open();  //Opening the connection
                     //SQL command used to update the relevant information with the user's input
-                    SqlCommand sqlCommand = new SqlCommand("Update Configuration SET Value = @UpdatingValue Where Item = @ExistingItem", connection);
+                    SqlCommand sqlCommand = new SqlCommand("Update [Configuration] SET Value = @UpdatingValue Where Item = @ExistingItem", connection);
 
                     //sqlCommand = new SqlCommand("Update [Configuration] set [Value]=@newValue WHERE Item = @ExitingItem", connection);
                     sqlCommand.Parameters.AddWithValue("@UpdatingValue", valueTxtBox.Text.ToString());   //Adding the value from the value text box
@@ -164,9 +164,9 @@ namespace ConfigTool
                 }
 
                 else { MessageBox.Show("Error! Input Invalid", "Input Error", MessageBoxButtons.OK); }
-            //}
-            ////Catch all for anything error that might happen
-            //catch (Exception exceptError) { MessageBox.Show("An error occured: " + exceptError.ToString(), "Error", MessageBoxButtons.OK); }
+            }
+            //Catch all for anything error that might happen
+            catch (Exception exceptError) { MessageBox.Show("An error occured: " + exceptError.ToString(), "Error", MessageBoxButtons.OK); }
         }
 
         /*

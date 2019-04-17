@@ -20,7 +20,7 @@ namespace WorkstationSimulation
     class WorkstationOperator
     {
         //Connection string used to connect the database
-        static string connString = "Server= localhost; Initial Catalog=Kanban System Data; Integrated Security=SSPI;";
+        static string connString = "Server= localhost; Initial Catalog=Kanban; Integrated Security=SSPI;";
         static void Main(string[] args)
         {
             bool runningStatus = true;  //Variable to keep track of the operation
@@ -28,7 +28,7 @@ namespace WorkstationSimulation
             int workStationIDBuffer = 0; string experienceBuffer = ""; int experienceLevel = 0;
 
             //If the connection to the database failed, close the application.
-            if (!TestConnection()) { Environment.Exit(0); }
+            if (!TestConnection()) { Console.WriteLine("Could not connect to database! Try Again!"); Environment.Exit(0); }
 
             //While loop to keep running until the user's input has been determined valid
             while(runningStatus)

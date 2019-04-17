@@ -28,3 +28,13 @@ C:\Users\slagu\Desktop\School\Second Year Semester 2\Advanced SQL\Project\PROG30
 C:\Users\slagu\Desktop\School\Second Year Semester 2\Advanced SQL\Project\PROG3070-Project\ConfigTool\ConfigTool\obj\Debug\ConfigTool.csproj.CoreCompileInputs.cache
 C:\Users\slagu\Desktop\School\Second Year Semester 2\Advanced SQL\Project\PROG3070-Project\ConfigTool\ConfigTool\obj\Debug\ConfigTool.exe
 C:\Users\slagu\Desktop\School\Second Year Semester 2\Advanced SQL\Project\PROG3070-Project\ConfigTool\ConfigTool\obj\Debug\ConfigTool.pdb
+C:\Users\gstew\OneDrive\Documents\Conestoga College Work\Level 4\Advanced SQL\PROG3070-Project\PROG3070-Project\ConfigTool\ConfigTool\bin\Debug\ConfigTool.exe.config
+C:\Users\gstew\OneDrive\Documents\Conestoga College Work\Level 4\Advanced SQL\PROG3070-Project\PROG3070-Project\ConfigTool\ConfigTool\bin\Debug\ConfigTool.exe
+C:\Users\gstew\OneDrive\Documents\Conestoga College Work\Level 4\Advanced SQL\PROG3070-Project\PROG3070-Project\ConfigTool\ConfigTool\bin\Debug\ConfigTool.pdb
+C:\Users\gstew\OneDrive\Documents\Conestoga College Work\Level 4\Advanced SQL\PROG3070-Project\PROG3070-Project\ConfigTool\ConfigTool\obj\Debug\ConfigTool.csprojAssemblyReference.cache
+C:\Users\gstew\OneDrive\Documents\Conestoga College Work\Level 4\Advanced SQL\PROG3070-Project\PROG3070-Project\ConfigTool\ConfigTool\obj\Debug\ConfigTool.Form1.resources
+C:\Users\gstew\OneDrive\Documents\Conestoga College Work\Level 4\Advanced SQL\PROG3070-Project\PROG3070-Project\ConfigTool\ConfigTool\obj\Debug\ConfigTool.Properties.Resources.resources
+C:\Users\gstew\OneDrive\Documents\Conestoga College Work\Level 4\Advanced SQL\PROG3070-Project\PROG3070-Project\ConfigTool\ConfigTool\obj\Debug\ConfigTool.csproj.GenerateResource.cache
+C:\Users\gstew\OneDrive\Documents\Conestoga College Work\Level 4\Advanced SQL\PROG3070-Project\PROG3070-Project\ConfigTool\ConfigTool\obj\Debug\ConfigTool.csproj.CoreCompileInputs.cache
+C:\Users\gstew\OneDrive\Documents\Conestoga College Work\Level 4\Advanced SQL\PROG3070-Project\PROG3070-Project\ConfigTool\ConfigTool\obj\Debug\ConfigTool.exe
+C:\Users\gstew\OneDrive\Documents\Conestoga College Work\Level 4\Advanced SQL\PROG3070-Project\PROG3070-Project\ConfigTool\ConfigTool\obj\Debug\ConfigTool.pdb

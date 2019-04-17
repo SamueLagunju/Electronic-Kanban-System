@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace StationDisplay
@@ -136,6 +137,7 @@ namespace StationDisplay
         // Description	: Continually updates parent chart using revised stockdata
         // Parameters	: Sender information from parent thread
         // Returns		: None
+        // Notes        : This should be replaced by a Timer, far easier to implement
         private void StockUpdater_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
             // Run endlessly, loop will be ended when thread is closed
@@ -175,6 +177,9 @@ namespace StationDisplay
                     }
                 }
                 ));
+
+                // Delay for specified amount of time
+                Thread.Sleep(500); 
             }
         }
     }

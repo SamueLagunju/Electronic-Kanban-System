@@ -189,10 +189,10 @@ namespace WorkstationSimulation
             bool runningStatus = true;  //Variable to keep the loop running
             while(runningStatus)
             {
-                //If the workstation is not active, then being initial setup
+                //If the workstation is not active, then begin simulation
                 if(!this.GetWorkStationStatus())
                 {    
-                    //If there are orders in the Order table, being operatiomn
+                    //If there are orders in the Order table, being operation
                     if(GetOrderStatus())
                     {
                         try

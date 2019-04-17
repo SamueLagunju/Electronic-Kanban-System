@@ -63,7 +63,7 @@ namespace OverseerDisplay
             for(int i = 0; i < GridView.Rows.Count; ++i)
             {
                 produced += Convert.ToInt32(GridView.Rows[i].Cells[2].Value);
-                passed += Convert.ToInt32(GridView.Rows[i].Cells[2].Value);
+                passed += Convert.ToInt32(GridView.Rows[i].Cells[3].Value);
             }
             producedLbl.Text = produced.ToString();
             passedLbl.Text = passed.ToString();

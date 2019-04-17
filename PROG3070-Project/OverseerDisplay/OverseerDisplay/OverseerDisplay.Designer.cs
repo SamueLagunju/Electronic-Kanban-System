@@ -36,6 +36,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.Refresh = new System.Windows.Forms.Timer(this.components);
+            this.producedLbl = new System.Windows.Forms.Label();
+            this.passedLbl = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.GridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -97,11 +99,31 @@
             // 
             this.Refresh.Tick += new System.EventHandler(this.Update_Tick);
             // 
+            // producedLbl
+            // 
+            this.producedLbl.AutoSize = true;
+            this.producedLbl.Location = new System.Drawing.Point(295, 321);
+            this.producedLbl.Name = "producedLbl";
+            this.producedLbl.Size = new System.Drawing.Size(51, 20);
+            this.producedLbl.TabIndex = 5;
+            this.producedLbl.Text = "label3";
+            // 
+            // passedLbl
+            // 
+            this.passedLbl.AutoSize = true;
+            this.passedLbl.Location = new System.Drawing.Point(295, 355);
+            this.passedLbl.Name = "passedLbl";
+            this.passedLbl.Size = new System.Drawing.Size(51, 20);
+            this.passedLbl.TabIndex = 6;
+            this.passedLbl.Text = "label3";
+            // 
             // OverseerDisplay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(538, 382);
+            this.Controls.Add(this.passedLbl);
+            this.Controls.Add(this.producedLbl);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.RunBtn);
@@ -124,6 +146,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Timer Refresh;
+        private System.Windows.Forms.Label producedLbl;
+        private System.Windows.Forms.Label passedLbl;
     }
 }
 

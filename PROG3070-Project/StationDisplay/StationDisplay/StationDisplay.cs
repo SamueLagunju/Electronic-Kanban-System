@@ -167,7 +167,7 @@ namespace StationDisplay
                     foreach(object[] record in StockData)
                     {
                         stockChrt.Series["Stock"].Points.AddXY(record[0], record[1]);
-                        if((int)record[1] < 5)
+                        if((int)record[1] <= 5)
                         {
                             stockChrt.Series["Stock"].Points[x].Color = Color.Red;
                         }
@@ -175,6 +175,9 @@ namespace StationDisplay
                     }
                 }
                 ));
+
+                // Delay
+                System.Threading.Thread.Sleep(500);
             }
         }
     }

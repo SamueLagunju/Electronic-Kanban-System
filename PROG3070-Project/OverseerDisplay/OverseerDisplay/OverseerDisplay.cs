@@ -32,7 +32,7 @@ namespace OverseerDisplay
         // Description	: Saves records returned from executing query passes as parameter
         // Parameters	: string query - query string used to gather data from server
         // Returns		: ArrayList - contains data gathered from server
-        private List<object> GetData()
+        private void GetData()
         {
             // Grab connection string from config file
             string constr = System.Configuration.ConfigurationManager.ConnectionStrings["SQL_Connection"].ConnectionString;
@@ -57,8 +57,16 @@ namespace OverseerDisplay
                     }
                 }
             }
-            // Return the gathered data
-            return Results;
+
+            // Sum all data for produced and passed lamps
+            int produced = 0, passed = 0;
+            for(int i = 0; i < GridView.Rows.Count; ++i)
+            {
+                produced += Convert.ToInt32(GridView.Rows[i].Cells[2].Value);
+                passed += Convert.ToInt32(GridView.Rows[i].Cells[2].Value);
+            }
+            producedLbl.Text = produced.ToString();
+            passedLbl.Text = passed.ToString();
         }
 
         // Method		: RunBtn_Click

@@ -59,7 +59,7 @@ namespace WorkstationSimulation
                 //If the experience level is Experienced/Normal
                 case 2:
                     this.experience = experienceBuffer; //Setting the experience level to Normal
-                    this.defectRate = (float)0.055;       //Setting the defect rate to 50%
+                    this.defectRate = (float)0.005;       //Setting the defect rate to 50%
                     //Speed is calcualted by multiplying the time scale by a random number between 0.9-1.1
                     this.speed = (float)(GetTimeScale() * GenerateRandomNumber(0.9, 1.1));
                     this.SetWorkStationStatus(false);   //Setting the workstation status to false
@@ -67,7 +67,7 @@ namespace WorkstationSimulation
                 //If the experience level is Very Experienced
                 case 3:
                     this.experience = experienceBuffer; //Setting the experience level to Very Experienced
-                    this.defectRate = (float)0.15;  //Setting the defect rate to 15%
+                    this.defectRate = (float)0.0015;  //Setting the defect rate to 15%
                     //Speed is calculated by multiplying the time scale by a random number between 0.9-1.1 and 0.85
                     this.speed = (float)(GetTimeScale() * 0.85 *GenerateRandomNumber(0.9, 1.1));
                     this.SetWorkStationStatus(false);   //Setting the active status to false

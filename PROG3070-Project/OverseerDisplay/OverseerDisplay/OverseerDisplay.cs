@@ -16,13 +16,24 @@ namespace OverseerDisplay
 {
     public partial class OverseerDisplay : Form
     {
+        // Boolean used to control buttons/timer
         private bool loop = false;
 
+        // Method		: OverseerDisplay
+        // Description	: Initializer
+        // Programmer	: Gabriel Stewart
+        // Parameters	: None
+        // Returns		: None
         public OverseerDisplay()
         {
             InitializeComponent();
         }
 
+        // Method		: OverseerDisplay_Load
+        // Description	: Initializes the GridView, sets properties
+        // Programmer	: Gabriel Stewart
+        // Parameters	: Generic sender information
+        // Returns		: None
         private void OverseerDisplay_Load(object sender, EventArgs e)
         {
             GridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;

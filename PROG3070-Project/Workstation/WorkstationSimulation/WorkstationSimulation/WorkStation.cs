@@ -84,7 +84,7 @@ namespace WorkstationSimulation
         public int GetTimeScale()
         {
             //Connection string used to connect to the SQL server database
-            string connString = "Server= localhost; Initial Catalog=Kanban; Integrated Security=SSPI;"; //Connection string to connect to the database
+            string connString = System.Configuration.ConfigurationManager.ConnectionStrings["SQL_Connection"].ConnectionString; //Connection string to connect to the database
             string commandString = "SELECT [Value] FROM [Configuration] WHERE [ITEM] = 'TimeScale'" ;   //Query string 
             int timeScaleBuffer;    //Value to be assigned from the database query
 
@@ -118,7 +118,7 @@ namespace WorkstationSimulation
         {
             bool tableResult = true;
 
-            string connString = "Server= localhost; Initial Catalog=Kanban; Integrated Security=SSPI;"; //Connection string to connect to the database
+            string connString = System.Configuration.ConfigurationManager.ConnectionStrings["SQL_Connection"].ConnectionString; //Connection string to connect to the database
             string commandString = "SELECT [Value] FROM [Configuration] WHERE [ITEM] = 'Order'";   //Query string 
             int orderValueStatus;    //Value to be assigned from the database query
 
@@ -188,7 +188,7 @@ namespace WorkstationSimulation
         {
             Console.Clear();
             bool runningStatus = true;  //Variable to keep the loop running
-            string connString = "Server= localhost; Initial Catalog=Kanban; Integrated Security=SSPI;"; //Connection string to connect to the database
+            string connString = System.Configuration.ConfigurationManager.ConnectionStrings["SQL_Connection"].ConnectionString; //Connection string to connect to the database
             while (runningStatus)
             {
                 //Simulator can only work if there are orders in the table
@@ -229,6 +229,8 @@ namespace WorkstationSimulation
                             //Executing the stored procedure query
                             int queryResult = sqlCommand.ExecuteNonQuery();
                             if (queryResult < 0) { runningStatus = false; }
+                            Console.WriteLine("I'm sleeping...");
+                            System.Threading.Thread.Sleep((int)this.GetWorkStationSpeed() * 100);
                         }
                         //If there was an error, let the user know and report back to where the function was called from
                         catch (Exception ExceptionError) { Console.WriteLine(ExceptionError.Message); runningStatus = false; }

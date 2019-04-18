@@ -20,7 +20,7 @@ namespace WorkstationSimulation
     class WorkstationOperator
     {
         //Connection string used to connect the database
-        static string connString = "Server= localhost; Initial Catalog=Kanban; Integrated Security=SSPI;";
+        static string connString = System.Configuration.ConfigurationManager.ConnectionStrings["SQL_Connection"].ConnectionString; //Connection string to connect to the database
         static void Main(string[] args)
         {
             bool runningStatus = true;  //Variable to keep track of the operation

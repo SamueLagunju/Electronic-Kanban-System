@@ -1,16 +1,16 @@
-﻿using System;
+﻿//Filename      : OverseerDisplay.cs
+//Project Name  : 
+//Programmer    : Gabriel Stewart
+//Version Date  :
+//Description   :
+//Sources		:
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
-
-//Filename      :
-//Project Name  :
-//Programmer    : Gabriel Stewart
-//Version Date  :
-//Description   :
-//Sources		:
 
 namespace OverseerDisplay
 {
@@ -66,6 +66,14 @@ namespace OverseerDisplay
                         GridView.DataSource = table;
                         GridView.ClearSelection();
                     }
+                }
+
+                // Execute command using query
+                using(SqlCommand command = new SqlCommand("SELECT [Value] FROM [Configuration] WHERE [ITEM] = 'Order'", con))
+                {
+                    con.Open(); // Open connection
+
+                    orderLbl.Text = (command.ExecuteScalar()).ToString();
                 }
             }
 

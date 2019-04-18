@@ -1,16 +1,16 @@
-﻿using System;
+﻿//Filename      : OverseerDisplay.cs
+//Project Name  : 
+//Programmer    : Gabriel Stewart
+//Version Date  :
+//Description   :
+//Sources		:
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
-
-//Filename      :
-//Project Name  :
-//Programmer    : Gabriel Stewart
-//Version Date  :
-//Description   :
-//Sources		:
 
 namespace OverseerDisplay
 {
@@ -67,6 +67,12 @@ namespace OverseerDisplay
                         GridView.ClearSelection();
                     }
                 }
+
+                // Execute command using query
+                using(SqlCommand command = new SqlCommand("SELECT [Value] FROM [Configuration] WHERE [ITEM] = 'Order'", con))
+                {
+                    orderLbl.Text = (command.ExecuteScalar()).ToString();
+                }
             }
 
             // Sum all data for produced and passed lamps
@@ -78,6 +84,7 @@ namespace OverseerDisplay
             }
             producedLbl.Text = produced.ToString();
             passedLbl.Text = passed.ToString();
+            yieldLbl.Text = Math.Round((float)(passed / produced) * 100, 2).ToString() + " %";
         }
 
         // Method		: RunBtn_Click

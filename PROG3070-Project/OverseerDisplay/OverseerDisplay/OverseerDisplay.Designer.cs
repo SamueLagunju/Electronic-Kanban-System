@@ -38,6 +38,10 @@
             this.Refresh = new System.Windows.Forms.Timer(this.components);
             this.producedLbl = new System.Windows.Forms.Label();
             this.passedLbl = new System.Windows.Forms.Label();
+            this.orderLbl = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label = new System.Windows.Forms.Label();
+            this.yieldLbl = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.GridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -104,24 +108,60 @@
             this.producedLbl.AutoSize = true;
             this.producedLbl.Location = new System.Drawing.Point(295, 321);
             this.producedLbl.Name = "producedLbl";
-            this.producedLbl.Size = new System.Drawing.Size(51, 20);
+            this.producedLbl.Size = new System.Drawing.Size(0, 20);
             this.producedLbl.TabIndex = 5;
-            this.producedLbl.Text = "label3";
             // 
             // passedLbl
             // 
             this.passedLbl.AutoSize = true;
             this.passedLbl.Location = new System.Drawing.Point(295, 355);
             this.passedLbl.Name = "passedLbl";
-            this.passedLbl.Size = new System.Drawing.Size(51, 20);
+            this.passedLbl.Size = new System.Drawing.Size(0, 20);
             this.passedLbl.TabIndex = 6;
-            this.passedLbl.Text = "label3";
+            // 
+            // orderLbl
+            // 
+            this.orderLbl.AutoSize = true;
+            this.orderLbl.Location = new System.Drawing.Point(415, 321);
+            this.orderLbl.Name = "orderLbl";
+            this.orderLbl.Size = new System.Drawing.Size(0, 20);
+            this.orderLbl.TabIndex = 8;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(352, 321);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(57, 20);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "Order: ";
+            // 
+            // label
+            // 
+            this.label.AutoSize = true;
+            this.label.Location = new System.Drawing.Point(353, 355);
+            this.label.Name = "label";
+            this.label.Size = new System.Drawing.Size(52, 20);
+            this.label.TabIndex = 9;
+            this.label.Text = "Yield: ";
+            // 
+            // yieldLbl
+            // 
+            this.yieldLbl.AutoSize = true;
+            this.yieldLbl.Location = new System.Drawing.Point(411, 355);
+            this.yieldLbl.Name = "yieldLbl";
+            this.yieldLbl.Size = new System.Drawing.Size(0, 20);
+            this.yieldLbl.TabIndex = 10;
             // 
             // OverseerDisplay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(538, 382);
+            this.Controls.Add(this.yieldLbl);
+            this.Controls.Add(this.label);
+            this.Controls.Add(this.orderLbl);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.passedLbl);
             this.Controls.Add(this.producedLbl);
             this.Controls.Add(this.label2);
@@ -148,6 +188,10 @@
         private System.Windows.Forms.Timer Refresh;
         private System.Windows.Forms.Label producedLbl;
         private System.Windows.Forms.Label passedLbl;
+        private System.Windows.Forms.Label orderLbl;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label;
+        private System.Windows.Forms.Label yieldLbl;
     }
 }
 

@@ -11,12 +11,16 @@ using System.Configuration;
 * FILE:			StationOperator
 * PROJECT:		WorkstationSimulation
 * PROGRAMMER:	Oloruntoba Lagunju.
-* DATE:			Apri 1st 2019
+* DATE:			April 1st 2019
 * DESCRIPTION:	Contains the main entry point to operate the workstation
 */
 
 namespace WorkstationSimulation
 {
+    /*
+    * NAME		: 
+    * PURPOSE	: 
+    */
     class WorkstationOperator
     {
         //Connection string used to connect the database
@@ -79,9 +83,10 @@ namespace WorkstationSimulation
             //Instantiating a new workstation with the user's input
             WorkStation newStation = new WorkStation(workStationIDBuffer, experienceBuffer, experienceLevel); runningStatus = true;
 
+            //Loop to make sure the user does not use an active workstation
             while (runningStatus)
             {
-                //If the stored procedure did not work again, obtain a new ID 
+                //Stored procedure used to check if the workstation is currently active
                 if (!RunInsertStoredProcedure(newStation))
                 {
                     try
@@ -101,16 +106,16 @@ namespace WorkstationSimulation
 
             runningStatus = true; Console.Clear();
 
+
             while (runningStatus)
             {
                 //Displaying the details of the newly instantiated workstation
-                newStation.DisplayDetails();
+                Console.Clear(); newStation.DisplayDetails();
 
                 try
                 {
                     Console.WriteLine("Press 0 to quit the program ");
                     Console.WriteLine("Press 1 to start the simulation");
-                    Console.WriteLine("Press 2 to stop the simulation");
                     Console.Write("Select An Option: ");
                     int userInput = Convert.ToInt32(Console.ReadLine());
 
@@ -118,12 +123,12 @@ namespace WorkstationSimulation
                     {
                         case 0:
                             runningStatus = false;
+                            newStation.SetWorkStationStatus(false);
                             break;
                         case 1:
+                            Console.Clear();
+                            newStation.SetWorkStationStatus(true);
                             newStation.SimulationOperation();
-                            break;
-                        case 2:
-                            newStation.SetWorkStationStatus(false);
                             break;
                         default:
                             Console.WriteLine("Invalid Input");
@@ -134,9 +139,6 @@ namespace WorkstationSimulation
                 }
                 catch (Exception ExceptionError) { Console.WriteLine(ExceptionError.Message); }
             }
-
-
-
         }
 
         /*
@@ -200,5 +202,7 @@ namespace WorkstationSimulation
             }
             return status;
         }
+
+       
     }
 }

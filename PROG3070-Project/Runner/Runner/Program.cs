@@ -69,7 +69,7 @@ namespace Runner
             using(SqlConnection con = new SqlConnection(constr))
             {
                 // Execute command using query
-                using(SqlCommand command = new SqlCommand("UPDATE Stock SET Stock = 60 WHERE Stock = 0", con))
+                using(SqlCommand command = new SqlCommand("UPDATE Stock SET Stock += 40 WHERE Stock <= 5", con))
                 {
                     con.Open(); // Open connection
                     command.ExecuteNonQuery();

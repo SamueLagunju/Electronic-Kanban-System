@@ -84,7 +84,7 @@ namespace OverseerDisplay
             }
             producedLbl.Text = produced.ToString();
             passedLbl.Text = passed.ToString();
-            yieldLbl.Text = Math.Round((float)passed / produced, 2).ToString();
+            yieldLbl.Text = Math.Round((float)(passed / produced) * 100, 2).ToString() + " %";
         }
 
         // Method		: RunBtn_Click

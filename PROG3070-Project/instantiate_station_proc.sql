@@ -16,7 +16,7 @@ BEGIN TRANSACTION t1
 		-- Get matching active status for passed station number
 		DECLARE @Status int
 		SET @Status = (SELECT Active FROM Station WHERE Station=@StationNumber)
-		-- If the station was found, but was inactie, update the number with new stations details
+		-- If the station was found, but was inactive, update the number with new stations details
 		IF @Status = 0
 			BEGIN 
 				UPDATE StationProperties

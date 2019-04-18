@@ -71,8 +71,6 @@ namespace OverseerDisplay
                 // Execute command using query
                 using(SqlCommand command = new SqlCommand("SELECT [Value] FROM [Configuration] WHERE [ITEM] = 'Order'", con))
                 {
-                    con.Open(); // Open connection
-
                     orderLbl.Text = (command.ExecuteScalar()).ToString();
                 }
             }
@@ -86,6 +84,7 @@ namespace OverseerDisplay
             }
             producedLbl.Text = produced.ToString();
             passedLbl.Text = passed.ToString();
+            yieldLbl.Text = Math.Round((float)passed / produced, 2).ToString();
         }
 
         // Method		: RunBtn_Click

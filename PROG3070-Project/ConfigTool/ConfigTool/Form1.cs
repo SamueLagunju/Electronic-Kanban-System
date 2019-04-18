@@ -66,7 +66,7 @@ namespace ConfigTool
         private bool TestConnection()
         {
             bool status;
-            connString = "Server= localhost; Initial Catalog=Kanban; Integrated Security=SSPI;";
+            connString = System.Configuration.ConfigurationManager.ConnectionStrings["SQL_Connection"].ConnectionString; //Connection string to connect to the database
             sqlConnToServer = new SqlConnection(connString);   //Creatinng a connectiong
             try
             {
